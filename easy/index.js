@@ -22,7 +22,7 @@ checkForSum = (arr, sum) => {
 
 // console.log(checkForSum2(nums, sum));
 
-var twoSum =  (nums, target) => {
+var twoSum = (nums, target) => {
     let complementArr = [];
     let indexArr = [];
     for (let i = 0; i < nums.length; i++) {
@@ -55,4 +55,60 @@ reverseInteger = (num) => {
     return parseFloat(revNum);
 }
 
-// console.log(reverseInteger(-123667577));
+
+// Problem 3 - Palindrome Number
+
+// Sol 1 - Converting the number into String
+
+palindromNumber = (num) => {
+    let numArr = num.toString().split('');
+    let leftStr = '';
+    let rightStr = '';
+    for (let i = 0; i < numArr.length / 2; i++) {
+        leftStr += numArr[i]
+    }
+    for (let i = numArr.length - 1; i >= (numArr.length % 2 === 0 ? numArr.length / 2 : numArr.length / 2 - 1); i--) {
+        rightStr += numArr[i];
+    }
+
+    if (leftStr === rightStr) return true;
+    else return false;
+}
+
+// Sol 2 - using object instead of string
+
+palindromeNumber2 = (num) => {
+    let numArr = num.toString().split('');
+    let obj1 = {};
+    let obj2 = {};
+    for (let i = 0; i < numArr.length / 2; i++) {
+        obj1[numArr[i]] = true;
+    }
+    for (let i = numArr.length - 1; i >= (numArr.length % 2 === 0 ? numArr.length / 2 : numArr.length / 2 - 1); i--) {
+        obj2[numArr[i]] = true;
+    }
+
+    if (JSON.stringify(obj1) === JSON.stringify(obj2)) return true;
+    else return false;
+}
+
+// Sol 3 - without converting the number into string
+
+palindromNumber3 = (num) => {
+    let str = '';
+    newNum = num;
+    console.log(newNum);
+
+    do{
+        // if number is negative ( -1 ) , do while loop still run at least once.
+        // Due to which str get assigned -1 and num and str becomes equal i,e -1. 
+        // So , we need to apply condition only for positive numbers.
+        if(num < 0) return false;
+        str += newNum % 10;
+        newNum = Math.floor(newNum / 10);
+        console.log(newNum);
+    } while (newNum >= 1);
+
+    if(parseInt(str) === num) return true;
+    else return false;
+}
