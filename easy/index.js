@@ -60,7 +60,7 @@ let twoSum3 = (arr, target) => {
 
 // Solution 1 with BigO(n)
 
-reverseInteger1 = (int) => {
+let reverseInteger1 = (int) => {
     let reverseInt = parseInt(int.toString().split('').reverse().join(''));
     reverseInt = int >= 0 ? reverseInt : reverseInt * (-1);
     if (reverseInt < Math.pow(-2, 31) || reverseInt > Math.pow(2, 31)) return 0;
@@ -69,7 +69,7 @@ reverseInteger1 = (int) => {
 
 // Solution 2
 // reverse function without using inbuilt functions with BigO(n)
-reverseInteger2 = (num) => {
+let reverseInteger2 = (num) => {
     let givenNum = num;
     let reverseInt = '';
 
@@ -85,9 +85,8 @@ reverseInteger2 = (num) => {
 
 // Problem 3 - Palindrome Number
 
-// Sol 1 - Converting the number into String
-
-palindromNumber = (num) => {
+// Sol 1 - Converting the number into String and matching both half
+let palindrome1 = (num) => {
     let numArr = num.toString().split('');
     let leftStr = '';
     let rightStr = '';
@@ -102,9 +101,8 @@ palindromNumber = (num) => {
     else return false;
 }
 
-// Sol 2 - using object instead of string
-
-palindromeNumber2 = (num) => {
+// Sol 2 - using object instead of string with same logic
+let palindrome2 = (num) => {
     let numArr = num.toString().split('');
     let obj1 = {};
     let obj2 = {};
@@ -119,24 +117,23 @@ palindromeNumber2 = (num) => {
     else return false;
 }
 
-// Sol 3 - without converting the number into string
+// Sol 3 - without converting the number into string ( fastest )
+let palindrome3 = (num) => {
+    let givenNum = num;
+    let reverse = '';
+    if(num < 0) return false;
+    do{
+        reverse += num % 10;
+        num = parseInt(num / 10);
+    }while(num >= 1)
+    return parseInt(reverse) === givenNum ? true : false;
+}
 
-palindromNumber3 = (num) => {
-    let str = '';
-    newNum = num;
-    console.log(newNum);
-
-    do {
-        // if number is negative ( -1 ) , do while loop still run at least once.
-        // Due to which str get assigned -1 and num and str becomes equal i,e -1. 
-        // So , we need to apply condition only for positive numbers.
-        if (num < 0) return false;
-        str += newNum % 10;
-        newNum = Math.floor(newNum / 10);
-        console.log(newNum);
-    } while (newNum >= 1);
-
-    if (parseInt(str) === num) return true;
+// Sol 4 - using inbuilt functions
+let palindrome4 = (num) => {
+    if(num < 0) return false;
+    let reverseInt = num.toString().split('').reverse().join('');
+    if(parseInt(reverseInt) === num) return true;
     else return false;
 }
 
