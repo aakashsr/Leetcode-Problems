@@ -51,7 +51,7 @@ let twoSum3 = (arr, target) => {
             compIndex < i ? indexArr.push(compIndex, i) : indexArr.push(i, compIndex);
             return indexArr;
         }
-    } 
+    }
     return false;
 };
 
@@ -121,19 +121,19 @@ let palindrome2 = (num) => {
 let palindrome3 = (num) => {
     let givenNum = num;
     let reverse = '';
-    if(num < 0) return false;
-    do{
+    if (num < 0) return false;
+    do {
         reverse += num % 10;
         num = parseInt(num / 10);
-    }while(num >= 1)
+    } while (num >= 1)
     return parseInt(reverse) === givenNum ? true : false;
 }
 
 // Sol 4 - using inbuilt functions
 let palindrome4 = (num) => {
-    if(num < 0) return false;
+    if (num < 0) return false;
     let reverseInt = num.toString().split('').reverse().join('');
-    if(parseInt(reverseInt) === num) return true;
+    if (parseInt(reverseInt) === num) return true;
     else return false;
 }
 
@@ -144,8 +144,8 @@ function roman_to_Int(str1) {
     var pre, curr;
 
     for (var i = 1; i < str1.length; i++) {
-        curr = char_to_int(str1.charAt(i));     // X
-        pre = char_to_int(str1.charAt(i - 1));  // X
+        curr = char_to_int(str1.charAt(i)); // X
+        pre = char_to_int(str1.charAt(i - 1)); // X
         if (curr <= pre) {
             num += curr;
         } else {
@@ -177,3 +177,30 @@ function char_to_int(c) {
 }
 // console.log(roman_to_Int('XXVI'));
 // console.log(roman_to_Int('III'));
+
+let romanToInteger = (roman) => {
+    let num = char_to_integer(roman.charAt(0)); // 1
+    for (let i = 1; i < roman.length; i++) { // i = 1
+        let pre = char_to_integer(roman[i-1]); // 1
+        let curr = char_to_integer(roman[i]);  // 10
+        if (pre >= curr) {
+            num += curr;
+        } else {
+            num = num - pre * 2 + curr; // 1 - 1 * 2 + 10
+        }
+    }
+    return num;
+}
+
+char_to_integer = (char) => {
+    let romanToInt = {
+        'I':1,
+        'V':5,
+        'X':10,
+        'L':50,
+        'C':100,
+        'D':500,
+        'M':1000
+    }
+    return romanToInt[char];
+}
