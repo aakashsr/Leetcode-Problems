@@ -1,13 +1,13 @@
 // CATEGORY === EASY 
 
-// Problem 1 - TWO SUM
+// PROBLEM 1 - TWO SUM
 
 const nums = [1, 19, 3, 5];
 const sum = 24;
 
 // sol 1 with BigO(n2)
 
-checkForSum = (arr, sum) => {
+let twoSum1 = (arr, sum) => {
     let indexArr = [];
     for (let i = 0; i < arr.length; i++) {
         for (let j = i + 1; j < arr.length; j++) {
@@ -19,12 +19,10 @@ checkForSum = (arr, sum) => {
 }
 
 // sol 2 with BigO(n);
-
-// console.log(checkForSum2(nums, sum));
-
-var twoSum = (nums, target) => {
+let twoSum2 = (nums, target) => {
     let complementArr = [];
     let indexArr = [];
+
     for (let i = 0; i < nums.length; i++) {
         if (!complementArr.includes(nums[i])) {
             complementArr.push(target - nums[i]);
@@ -38,23 +36,52 @@ var twoSum = (nums, target) => {
     return false;
 };
 
-// console.log(twoSum([3,2,4],6));
+// Sol 3 with Array.entries() method with BigO(n)
+let twoSum3 = (arr, target) => {
+    let complementArr = [];
+    let indexArr = [];
+
+    for (let [i, elem] of arr.entries()) {
+        if (!complementArr.includes(elem)) {
+            complementArr.push(target - elem);
+        } else {
+            let cur = elem;
+            let complement = target - cur
+            let compIndex = arr.indexOf(complement);
+            compIndex < i ? indexArr.push(compIndex, i) : indexArr.push(i, compIndex);
+            return indexArr;
+        }
+    } 
+    return false;
+};
 
 
 // Problem 2  -  Reverse Integer
 
-reverseInteger = (num) => {
-    let revNum = parseInt(num.toString().split('').reverse().join(''));
-    if (num < 0) {
-        revNum = revNum * (-1);
-    }
-    if (revNum < (Math.pow(2, 31) * (-1)) || revNum > Math.pow(2, 31)) {
-        console.log('inside if');
-        return 0;
-    }
-    return parseFloat(revNum);
+// Solution 1 with BigO(n)
+
+reverseInteger1 = (int) => {
+    let reverseInt = parseInt(int.toString().split('').reverse().join(''));
+    reverseInt = int >= 0 ? reverseInt : reverseInt * (-1);
+    if (reverseInt < Math.pow(-2, 31) || reverseInt > Math.pow(2, 31)) return 0;
+    return reverseInt;
 }
 
+// Solution 2
+// reverse function without using inbuilt functions with BigO(n)
+reverseInteger2 = (num) => {
+    let givenNum = num;
+    let reverseInt = '';
+
+    do {
+        reverseInt += Math.abs(givenNum) % 10;
+        givenNum = parseInt(givenNum / 10);
+    } while (Math.abs(givenNum) >= 1)
+    reverseInt = parseInt(reverseInt);
+    if (reverseInt < Math.pow(-2, 31) || reverseInt > Math.pow(2, 31)) return 0;
+
+    return num >= 0 ? parseInt(reverseInt) : parseInt(reverseInt) * (-1);
+}
 
 // Problem 3 - Palindrome Number
 
@@ -99,16 +126,57 @@ palindromNumber3 = (num) => {
     newNum = num;
     console.log(newNum);
 
-    do{
+    do {
         // if number is negative ( -1 ) , do while loop still run at least once.
         // Due to which str get assigned -1 and num and str becomes equal i,e -1. 
         // So , we need to apply condition only for positive numbers.
-        if(num < 0) return false;
+        if (num < 0) return false;
         str += newNum % 10;
         newNum = Math.floor(newNum / 10);
         console.log(newNum);
     } while (newNum >= 1);
 
-    if(parseInt(str) === num) return true;
+    if (parseInt(str) === num) return true;
     else return false;
 }
+
+function roman_to_Int(str1) {
+    if (str1 == null) return -1;
+    var num = char_to_int(str1.charAt(0));
+    // num = X
+    var pre, curr;
+
+    for (var i = 1; i < str1.length; i++) {
+        curr = char_to_int(str1.charAt(i));     // X
+        pre = char_to_int(str1.charAt(i - 1));  // X
+        if (curr <= pre) {
+            num += curr;
+        } else {
+            num = num - pre * 2 + curr;
+        }
+    }
+    return num;
+}
+
+function char_to_int(c) {
+    switch (c) {
+        case 'I':
+            return 1;
+        case 'V':
+            return 5;
+        case 'X':
+            return 10;
+        case 'L':
+            return 50;
+        case 'C':
+            return 100;
+        case 'D':
+            return 500;
+        case 'M':
+            return 1000;
+        default:
+            return -1;
+    }
+}
+// console.log(roman_to_Int('XXVI'));
+// console.log(roman_to_Int('III'));
