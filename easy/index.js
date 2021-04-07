@@ -137,6 +137,9 @@ let palindrome4 = (num) => {
     else return false;
 }
 
+// Problem 4 - Roman to Integer
+
+// Sol 1 - Using Switch statement
 function roman_to_Int(str1) {
     if (str1 == null) return -1;
     var num = char_to_int(str1.charAt(0));
@@ -175,14 +178,13 @@ function char_to_int(c) {
             return -1;
     }
 }
-// console.log(roman_to_Int('XXVI'));
-// console.log(roman_to_Int('III'));
 
+// Solution 2 - Using Object
 let romanToInteger = (roman) => {
     let num = char_to_integer(roman.charAt(0)); // 1
     for (let i = 1; i < roman.length; i++) { // i = 1
-        let pre = char_to_integer(roman[i-1]); // 1
-        let curr = char_to_integer(roman[i]);  // 10
+        let pre = char_to_integer(roman[i - 1]); // 1
+        let curr = char_to_integer(roman[i]); // 10
         if (pre >= curr) {
             num += curr;
         } else {
@@ -194,13 +196,115 @@ let romanToInteger = (roman) => {
 
 char_to_integer = (char) => {
     let romanToInt = {
-        'I':1,
-        'V':5,
-        'X':10,
-        'L':50,
-        'C':100,
-        'D':500,
-        'M':1000
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000
     }
     return romanToInt[char];
 }
+
+
+// Problem 5 - Longest Common Prefixes 
+
+// Solution 1 - BigO(n2)
+
+// Input: strs = ["flower","flow","flight"]
+// Output: "fl"
+
+let strs = ["slack", "slacu", "slow"];
+
+let longestCommonPrefix = (str) => {
+    console.log(str);
+    let common = [];
+    let common2 = [];
+    let firstItem = [];
+
+    for (let i = 0; i < str.length; i++) {
+        for (let j = 0; j < str[i].length; j++) {
+            // console.log(str[i].length);
+            if (i === 0) {
+                firstItem.push(str[i][j])
+            }
+            if (i > 0) {
+                console.log(str[i][j], firstItem[j]);
+                if (str[i][j] === firstItem[j]) {
+                    if (!common.includes(str[i][j])) {
+                        common.push(str[i][j])
+                    }
+
+                }
+            }
+        }
+    }
+    console.log(common);
+
+}
+
+// longestCommonPrefix(strs);
+
+
+
+// Problem 6 - Remove Duplicates
+
+// SOL 1 - Brute Force method - BigO(n2)
+
+let arr = [0,0,23,1,1,1,2,2,3,3,4];
+
+let removeDuplicates1 = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i] === arr[j]) {
+                arr.splice(j, 1);
+            }
+        }
+    }
+    return arr;
+}
+
+// SOL 2 - Using Extra Array - BigO(n)
+let removeDuplicates2 = (arr) => {
+    let uniqueArr = [];
+    arr.forEach((elem) => {
+        if (!uniqueArr.includes(elem)) uniqueArr.push(elem);
+        else return false;
+    })
+    return uniqueArr;
+}
+
+
+// SOL 3 - Using JS inbuilt function ( not working in leetcode)
+let removeDuplicates3 = (arr) => {
+    return arr.reduce((acc, cur) => {
+        if (!acc.includes(cur)) {
+            acc.push(cur);
+        }
+        // console.log(acc);
+        return acc;
+    }, [])
+    // return uniqueArr;
+    // return [...acc];
+}
+
+let removeDuplicates4 = (arr) => {
+    for (let i = 0, j = i+1; i < arr.length; i++, j++) {
+        console.log(i,arr[i],j,arr[j]);
+        if(arr[i] === arr[j]) {
+            // console.log(arr[i],arr[j]);
+            // console.log(j);
+            arr.splice(i, 1);
+            i=i-1;
+            j=j-1;
+        }
+        console.log(arr);
+    }
+    return arr;
+}
+// [0,0,23,1,1,1,2,2,3,3,4];
+
+
+
+console.log(removeDuplicates4(arr));
