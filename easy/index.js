@@ -208,6 +208,45 @@ char_to_integer = (char) => {
 }
 
 
+// Solution 3 - Using for loop from index 0
+
+let romanToNumber = (roman) => {
+    romanArr = roman.split("");
+    let sum = 0;
+    let cur = romanArr[0];
+    let curNum = findPair(cur);
+    for (let i = 0; i < romanArr.length; i++) {
+      if (i === 0) {
+        sum += curNum;
+      } else {
+        let prevNum = curNum;
+        cur = romanArr[i];
+        curNum = findPair(cur);
+        if (prevNum >= curNum) {
+          sum += curNum;
+        } else {
+          sum += curNum - 2 * prevNum;
+        }
+      }
+    }
+    return sum;
+  };
+  
+  let findPair = (alphabet) => {
+    const romanNumberPairObj = {
+      I: 1,
+      V: 5,
+      X: 10,
+      L: 50,
+      C: 100,
+      D: 500,
+      M: 1000,
+    };
+  
+    return romanNumberPairObj[alphabet];
+  };
+
+
 // Problem 5 - Longest Common Prefixes 
 
 // Solution 1 - BigO(n2)
@@ -285,26 +324,15 @@ let removeDuplicates3 = (arr) => {
         // console.log(acc);
         return acc;
     }, [])
-    // return uniqueArr;
-    // return [...acc];
 }
 
 let removeDuplicates4 = (arr) => {
     for (let i = 0, j = i+1; i < arr.length; i++, j++) {
-        console.log(i,arr[i],j,arr[j]);
         if(arr[i] === arr[j]) {
-            // console.log(arr[i],arr[j]);
-            // console.log(j);
             arr.splice(i, 1);
-            i=i-1;
-            j=j-1;
+            i -= 1;
+            j -= 1;
         }
-        console.log(arr);
     }
     return arr;
 }
-// [0,0,23,1,1,1,2,2,3,3,4];
-
-
-
-console.log(removeDuplicates4(arr));
