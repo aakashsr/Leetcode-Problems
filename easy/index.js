@@ -361,14 +361,13 @@ const removeDuplicates5 = (arr) => {
   arr.length = i + 1;
 };
 
-
-
 // Problem 7 - Merge Sorted Array ( don't return a new array instead return the first array as resultant array)
 
-// Algo :
-// 1. loop over "nums2" array until i < nums2.length or nums2[i] becomes "undefined"
-// 2. compare each item of nums2 array with nums1 array . If "nums2" array item is less than "nums1" array item or nums1[i] is "undefined", use splice method to insert that "nums2[j]" number into "nums1" array and then increment both "i" and "j".
-// 3. Else i,e if nums1[i] < nums2[j] , just increment i as it's already sorted.
+/* Algo :
+ 1. loop over "nums2" array until i < nums2.length or nums2[i] becomes "undefined"
+ 2. compare each item of nums2 array with nums1 array . If "nums2" array item is less than "nums1" array item or nums1[i] is "undefined", use splice method to insert that "nums2[j]" number into "nums1" array and then increment both "i" and "j".
+ 3. Else i,e if nums1[i] < nums2[j] , just increment i as it's already sorted.
+*/
 
 const merge = (nums1, m, nums2, n) => {
   // remove the zeros from the Array
@@ -388,4 +387,25 @@ const merge = (nums1, m, nums2, n) => {
     }
   }
   return nums1;
+};
+
+// Problem 8 - Merge String Alternatively
+
+// Input: word1 = "abc", word2 = "pqr"
+// Output: "apbqcr"
+
+/* Algo : 
+1. Get the longer array.
+2. Loop upto length of longer array
+3. Create a new string and keep adding str1 character and str2 character alternatively until their lengths
+*/
+
+const mergeStr = (str1, str2) => {
+  var mergedStr = "";
+  var maxLength = str1.length > str2.length ? str1.length : str2.length;
+  for (let i = 0; i < maxLength; i++) {
+    if (i < str1.length) mergedStr += str1[i];
+    if (i < str2.length) mergedStr += str2[i];
+  }
+  return mergedStr;
 };
