@@ -360,3 +360,32 @@ const removeDuplicates5 = (arr) => {
   }
   arr.length = i + 1;
 };
+
+
+
+// Problem 7 - Merge Sorted Array ( don't return a new array instead return the first array as resultant array)
+
+// Algo :
+// 1. loop over "nums2" array until i < nums2.length or nums2[i] becomes "undefined"
+// 2. compare each item of nums2 array with nums1 array . If "nums2" array item is less than "nums1" array item or nums1[i] is "undefined", use splice method to insert that "nums2[j]" number into "nums1" array and then increment both "i" and "j".
+// 3. Else i,e if nums1[i] < nums2[j] , just increment i as it's already sorted.
+
+const merge = (nums1, m, nums2, n) => {
+  // remove the zeros from the Array
+  nums1.splice(m, nums1.length - m);
+  let i = 0;
+  let j = 0;
+
+  while (nums2[j] !== undefined) {
+    // or j < nums2.length
+    if (nums1[i] === undefined || nums1[i] >= nums2[j]) {
+      // if nums2[j] is smaller than arr1[i] , then push nums2[j] at i position in nums1
+      nums1.splice(i, 0, nums2[j]);
+      i++;
+      j++;
+    } else {
+      i++;
+    }
+  }
+  return nums1;
+};
