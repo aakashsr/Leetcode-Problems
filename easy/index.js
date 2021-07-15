@@ -409,3 +409,29 @@ const mergeStr = (str1, str2) => {
   }
   return mergedStr;
 };
+
+// Problem 9 - Merge Sorted Array and return the result in a new Array object
+
+/* Algo:
+1. Loop until any of the array item becomes "undefined"
+2. If "nums2" item is less than "nums1" or nums1 item becomes "undefined" , then push "nums2" item into new array 
+3. Else push "nums1" item.
+4. Return the final array.
+*/
+
+const merge = (nums1, nums2) => {
+  const mergedArr = [];
+  let i = 0;
+  let j = 0;
+
+  while (nums1[i] !== undefined || nums2[j] !== undefined) {
+    if (nums1[i] === undefined || nums1[i] >= nums2[j]) {
+      mergedArr.push(nums2[j]);
+      j++;
+    } else {
+      mergedArr.push(nums1[i]);
+      i++;
+    }
+  }
+  return mergedArr;
+};
