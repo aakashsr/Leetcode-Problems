@@ -329,7 +329,7 @@ let removeDuplicates3 = (arr) => {
 
 // SOL 4 - Using O(1) memory and O(N) complexity
 
-/* LOGIC - Since array is already sorted , we took two pointer i and j and matched the adjacent element , if they are equal , we remove one of the occurances of element . Now , as the size of array is shortened by 1 , to retain the value of i and j , we need to decrement both by one. We repeat this , until we reach end of array.
+/* Approach - Since array is already sorted , we took two pointer i and j and matched the adjacent element , if they are equal , we remove one of the occurances of element . Now , as the size of array is shortened by 1 , to retain the value of i and j , we need to decrement both by one. We repeat this , until we reach end of array.
 
 */
 
@@ -341,6 +341,22 @@ let removeDuplicates4 = (arr) => {
       j -= 1;
     }
   }
+  return arr;
+};
+
+// SOL 4(version 2) - Using O(1) memory and O(N) complexity
+
+const removeDuplicates4 = (arr) => {
+  let i = 0;
+  for (let j = i+1; j < arr.length; j++) {
+    if (arr[i] === arr[j]) {
+      arr.splice(i,1);
+      j--;
+    } else {
+      i++;
+    }
+  }
+  arr.length = i;
   return arr;
 };
 
@@ -395,14 +411,14 @@ const merge = (nums1, m, nums2, n) => {
 // Output: "apbqcr"
 
 /* Algo : 
-1. Get the longer array.
-2. Loop upto length of longer array
+1. Get the longer array , say "maxLength"
+2. Loop upto "maxLength"
 3. Create a new string and keep adding str1 character and str2 character alternatively until their lengths
 */
 
 const mergeStr = (str1, str2) => {
-  var mergedStr = "";
-  var maxLength = str1.length > str2.length ? str1.length : str2.length;
+  let mergedStr = "";
+  const maxLength = str1.length > str2.length ? str1.length : str2.length;
   for (let i = 0; i < maxLength; i++) {
     if (i < str1.length) mergedStr += str1[i];
     if (i < str2.length) mergedStr += str2[i];
@@ -419,7 +435,7 @@ const mergeStr = (str1, str2) => {
 4. Return the final array.
 */
 
-const merge = (nums1, nums2) => {
+const merge2 = (nums1, nums2) => {
   const mergedArr = [];
   let i = 0;
   let j = 0;
