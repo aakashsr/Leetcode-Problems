@@ -451,3 +451,31 @@ const merge2 = (nums1, nums2) => {
   }
   return mergedArr;
 };
+
+
+// Problem 10 - Shuffle The Array
+
+// Sol 1 - By returning new array.
+
+const shuffleArray = (nums, n) => {
+  let shuffledArr = [];
+  for (let i = 0; i < n; i++) {
+    shuffledArr.push(nums[i],nums[n + i]);
+  }
+  return shuffledArr;
+};
+
+// Sol 2 - Inplace Algo
+
+const shuffleArray2 = (nums, n) => {
+  let i = -1;
+  j = n;
+  while (nums[i + 1] !== undefined) {
+    let temp = nums[j];
+    nums.splice(j, 1);
+    nums.splice(i + 2, 0, temp);
+    i += 2;
+    j += 1;
+  }
+  return nums;
+};
