@@ -509,3 +509,40 @@ const numJewelsInStones2 = (jewels, stones) => {
     return [...stones].filter((stone) => jewels.includes(stone)).length;
   }
 };
+
+// Problem 12 - How Many Numbers Are Smaller Than the Current Number
+
+// Sol 1 - Using while and for loop  - O(n2)
+
+var smallerNumbersThanCurrent = function(nums) {
+  let i = 0;
+  const result = [];
+  while (i < nums.length) {
+    let count = 0;
+    let cur = nums[i];
+    for (let j = 0; j < nums.length; j++) {
+      if (nums[j] < cur) {
+        count++;
+      }
+    }
+    result.push(count);
+    i++;
+  }
+  return result;
+};
+
+
+// Sol 2 - Using map() and filter() functions - One liner - O(n2)
+
+const smallerNumbersThanCurrent2 = (nums) => {
+  return nums.map((number) => nums.filter((cur) => number > cur).length);
+};
+
+// Sol 3 - Using JS sort() - O(n)  - Amazing solution 
+
+let smallerNumbersThanCurrent3 = function(nums) {
+  let sortedArr = [...nums].sort(function(a, b) {
+      return a - b;
+  });
+  return nums.map(val => sortedArr.indexOf(val));
+};
