@@ -346,7 +346,7 @@ let removeDuplicates4 = (arr) => {
 
 // SOL 4(version 2) - Using O(1) memory and O(N) complexity
 
-const removeDuplicates4 = (arr) => {
+const removeDuplicates5 = (arr) => {
   let i = 0;
   for (let j = i+1; j < arr.length; j++) {
     if (arr[i] === arr[j]) {
@@ -366,7 +366,7 @@ const removeDuplicates4 = (arr) => {
 When we encounter nums[j] !== nums[i], the duplicate run has ended so we must copy its value to nums[i + 1], i is then incremented and we repeat the same process again until j reaches the end of array.
  */
 
-const removeDuplicates5 = (arr) => {
+const removeDuplicates6 = (arr) => {
   let i = 0;
   for (let j = i + 1; j < arr.length; j++) {
     if (arr[i] !== arr[j]) {
@@ -478,4 +478,34 @@ const shuffleArray2 = (nums, n) => {
     j += 1;
   }
   return nums;
+};
+
+// Problem 11 - JEWELS and STONES
+
+// Sol 1 Using "includes()"
+
+var numJewelsInStones = (jewels, stones) => {
+  let count = 0;
+  if (jewels.length < 1) {
+    return "There is no jewels";
+  } else if (stones.length > 50) {
+    return "You can have max 50 stones!";
+  } else {
+    for (let i = 0; stones.length <= 50; i++) {
+      if (jewels.includes(stones[i])) count++;
+    }
+  }
+  return count;
+};
+
+// Sol 2 Using "filter()"
+
+const numJewelsInStones2 = (jewels, stones) => {
+  if (jewels.length < 1) {
+    return "There is no jewels";
+  } else if (stones.length > 50) {
+    return "You can have max 50 stones!";
+  } else {
+    return [...stones].filter((stone) => jewels.includes(stone)).length;
+  }
 };
