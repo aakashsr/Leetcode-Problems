@@ -548,7 +548,7 @@ let smallerNumbersThanCurrent3 = function(nums) {
 };
 
 
-// Problem 13  Shuggle String 
+// Problem 13  Shuffle String 
 
 const shuffleString = (s, indices) => {
   let shuffledArr = [];
@@ -559,6 +559,23 @@ const shuffleString = (s, indices) => {
   }
   return shuffledArr.join("");
 };
+
+// Decompress Run-Length Encoded List
+
+const mergeList = (nums) => {
+  let arr = [];
+  for (let i = 0, j = 1; i < nums.length; i += 2, j += 2) {
+    let freq = nums[i];
+    let value = nums[j];
+
+    for (let k = 0; k < freq; k++) {
+      arr = arr.concat([value]);
+    }
+  }
+  return arr;
+};
+
+
 
 
 
