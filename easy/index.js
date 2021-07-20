@@ -546,3 +546,19 @@ let smallerNumbersThanCurrent3 = function(nums) {
   });
   return nums.map(val => sortedArr.indexOf(val));
 };
+
+
+// Problem 13  Shuggle String 
+
+const shuffleString = (s, indices) => {
+  let shuffledArr = [];
+  for (let i = 0; i < s.length; i++) {
+    let index = indices[i]; // get the index of the
+    let current = s[i]; // get the current value
+    shuffledArr[index] = current; // assign the value at index
+  }
+  return shuffledArr.join("");
+};
+
+
+
