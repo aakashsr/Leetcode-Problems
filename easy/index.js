@@ -348,9 +348,9 @@ let removeDuplicates4 = (arr) => {
 
 const removeDuplicates5 = (arr) => {
   let i = 0;
-  for (let j = i+1; j < arr.length; j++) {
+  for (let j = i + 1; j < arr.length; j++) {
     if (arr[i] === arr[j]) {
-      arr.splice(i,1);
+      arr.splice(i, 1);
       j--;
     } else {
       i++;
@@ -452,7 +452,6 @@ const merge2 = (nums1, nums2) => {
   return mergedArr;
 };
 
-
 // Problem 10 - Shuffle The Array
 
 // Sol 1 - By returning new array.
@@ -460,7 +459,7 @@ const merge2 = (nums1, nums2) => {
 const shuffleArray = (nums, n) => {
   let shuffledArr = [];
   for (let i = 0; i < n; i++) {
-    shuffledArr.push(nums[i],nums[n + i]);
+    shuffledArr.push(nums[i], nums[n + i]);
   }
   return shuffledArr;
 };
@@ -514,7 +513,7 @@ const numJewelsInStones2 = (jewels, stones) => {
 
 // Sol 1 - Using while and for loop  - O(n2)
 
-var smallerNumbersThanCurrent = function(nums) {
+var smallerNumbersThanCurrent = function (nums) {
   let i = 0;
   const result = [];
   while (i < nums.length) {
@@ -531,24 +530,22 @@ var smallerNumbersThanCurrent = function(nums) {
   return result;
 };
 
-
 // Sol 2 - Using map() and filter() functions - One liner - O(n2)
 
 const smallerNumbersThanCurrent2 = (nums) => {
   return nums.map((number) => nums.filter((cur) => number > cur).length);
 };
 
-// Sol 3 - Using JS sort() - O(n)  - Amazing solution 
+// Sol 3 - Using JS sort() - O(n)  - Amazing solution
 
-let smallerNumbersThanCurrent3 = function(nums) {
-  let sortedArr = [...nums].sort(function(a, b) {
-      return a - b;
+let smallerNumbersThanCurrent3 = function (nums) {
+  let sortedArr = [...nums].sort(function (a, b) {
+    return a - b;
   });
-  return nums.map(val => sortedArr.indexOf(val));
+  return nums.map((val) => sortedArr.indexOf(val));
 };
 
-
-// Problem 13  Shuffle String 
+// Problem 13  Shuffle String
 
 const shuffleString = (s, indices) => {
   let shuffledArr = [];
@@ -560,7 +557,7 @@ const shuffleString = (s, indices) => {
   return shuffledArr.join("");
 };
 
-// Decompress Run-Length Encoded List
+// Problem 14 Decompress Run-Length Encoded List
 
 const mergeList = (nums) => {
   let arr = [];
@@ -575,7 +572,29 @@ const mergeList = (nums) => {
   return arr;
 };
 
+// Problem 15 Count Items Matching a Rule
 
+// Sol 1
+var countMatches = function (items, ruleKey, ruleValue) {
+  let count = 0;
+  for (let i = 0; i < items.length; i++) {
+    if (ruleKey === "type" && items[i][0] === ruleValue) {
+      count++;
+    } else if (ruleKey === "color" && items[i][1] === ruleValue) {
+      count++;
+    } else if (ruleKey === "name" && items[i][2] === ruleValue) {
+      count++;
+    }
+  }
+  return count;
+};
 
+// Sol 2
 
-
+var countMatches = function(items, ruleKey, ruleValue) {
+  return items.filter((item) => {
+    return (ruleKey === "type" && ruleValue === item[0]) ||
+      (ruleKey === "color" && ruleValue === item[1]) ||
+      (ruleKey === "name" && ruleValue === item[2]);
+  }).length;
+};
