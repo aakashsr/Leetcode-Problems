@@ -598,3 +598,32 @@ var countMatches = function(items, ruleKey, ruleValue) {
       (ruleKey === "name" && ruleValue === item[2]);
   }).length;
 };
+
+// Problem 16  Maximum Product Difference Between Two Pairs
+
+// Sol1 - Wihout using "sort()"
+
+var maxProductDifference = function(nums) {
+  let max = Math.max(...nums);
+  let min = Math.min(...nums);
+  nums.splice(nums.indexOf(max), 1);
+  nums.splice(nums.indexOf(min), 1);
+  let max2 = Math.max(...nums);
+  let min2 = Math.min(...nums);
+
+  return max * max2 - min * min2;
+};
+
+// Sol 2 - Using sort() 
+
+var maxProductDifference = function(nums) {
+  const sortedArr = nums.sort((a, b) => a - b);
+  let max1 = sortedArr[sortedArr.length - 1];
+  let max2 = sortedArr[sortedArr.length - 2];
+  let min1 = sortedArr[0];
+  let min2 = sortedArr[1];
+
+  return max1 * max2 - min1 * min2;
+};
+
+
