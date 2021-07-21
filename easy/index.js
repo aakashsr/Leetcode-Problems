@@ -591,11 +591,13 @@ var countMatches = function (items, ruleKey, ruleValue) {
 
 // Sol 2
 
-var countMatches = function(items, ruleKey, ruleValue) {
+var countMatches = function (items, ruleKey, ruleValue) {
   return items.filter((item) => {
-    return (ruleKey === "type" && ruleValue === item[0]) ||
+    return (
+      (ruleKey === "type" && ruleValue === item[0]) ||
       (ruleKey === "color" && ruleValue === item[1]) ||
-      (ruleKey === "name" && ruleValue === item[2]);
+      (ruleKey === "name" && ruleValue === item[2])
+    );
   }).length;
 };
 
@@ -603,7 +605,7 @@ var countMatches = function(items, ruleKey, ruleValue) {
 
 // Sol1 - Wihout using "sort()"
 
-var maxProductDifference = function(nums) {
+var maxProductDifference = function (nums) {
   let max = Math.max(...nums);
   let min = Math.min(...nums);
   nums.splice(nums.indexOf(max), 1);
@@ -614,9 +616,9 @@ var maxProductDifference = function(nums) {
   return max * max2 - min * min2;
 };
 
-// Sol 2 - Using sort() 
+// Sol 2 - Using sort()
 
-var maxProductDifference = function(nums) {
+var maxProductDifference = function (nums) {
   const sortedArr = nums.sort((a, b) => a - b);
   let max1 = sortedArr[sortedArr.length - 1];
   let max2 = sortedArr[sortedArr.length - 2];
@@ -626,4 +628,34 @@ var maxProductDifference = function(nums) {
   return max1 * max2 - min1 * min2;
 };
 
+// Problem 17 - Count the number of consistent strings in
 
+/* Approach:
+1. Convert allowed string into array.
+2. Set the count to length of words array.
+3. Use nested loop over "words" array.
+4. If the character is not preset in "allowed" array , decrement the count and break.
+*/
+
+// Sol 1 - Using nested loops
+
+var countConsistentStrings = function (allowed, words) {
+  const allowedArr = [...allowed];
+  let count = words.length;
+
+  for (let i = 0; i < words.length; i++) {
+    for (j = 0; j < words[i].length; j++) {
+      if (!allowedArr.includes(words[i][j])) {
+        count--;
+        break;
+      }
+    }
+  }
+  return count;
+};
+
+// Sol 2 - Using reduce() and every()
+
+const countConsistentStrings = (allowed, words) =>
+  words.filter((word) => [...word].every((letter) => allowed.includes(letter)))
+    .length;
