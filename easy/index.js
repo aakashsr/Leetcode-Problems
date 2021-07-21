@@ -659,3 +659,27 @@ var countConsistentStrings = function (allowed, words) {
 const countConsistentStrings = (allowed, words) =>
   words.filter((word) => [...word].every((letter) => allowed.includes(letter)))
     .length;
+
+// Problem 18  - Check If Two String Arrays are Equivalent
+
+// Sol 1 - Using join()
+
+var arrayStringsAreEqual = function (word1, word2) {
+  return word1.join("") === word2.join("") ? true : false;
+};
+
+// Sol 2 - Using for loops
+
+var arrayStringsAreEqual = function (word1, word2) {
+  let str1 = "";
+  let str2 = "";
+  for (let i = 0; i < word1.length; i++) {
+    str1 += word1[i];
+  }
+
+  for (let i = 0; i < word2.length; i++) {
+    str2 += word2[i];
+  }
+
+  return str1 === str2 ? true : false;
+};
