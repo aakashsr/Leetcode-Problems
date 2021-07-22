@@ -683,3 +683,17 @@ var arrayStringsAreEqual = function (word1, word2) {
 
   return str1 === str2 ? true : false;
 };
+
+// Problem 19 - Find the Highest Altitude
+
+var largestAltitude = function(gain) {
+  let maxAltitude = 0;
+  let newHeight = 0;
+  for (let i = 0; i < gain.length; i++) {
+    newHeight = newHeight + gain[i];
+    if (newHeight > maxAltitude) {
+      maxAltitude = newHeight;
+    }
+  }
+  return maxAltitude;
+};
