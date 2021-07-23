@@ -697,3 +697,23 @@ var largestAltitude = function(gain) {
   }
   return maxAltitude;
 };
+
+// Problem 20 - Maximum Subarray
+
+const maximumSubarray = (nums) => {
+  let maxSum = 0;
+  let currentSum = 0;
+  for (let i = 0; i < nums.length; i++) {
+    currentSum += nums[i];
+    if (currentSum > maxSum) {
+      maxSum = currentSum;
+    }
+
+    if (currentSum < 0) {
+      currentSum = 0;
+    }
+  }
+  return maxSum;
+};
+
+
