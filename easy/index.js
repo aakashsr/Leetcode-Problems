@@ -713,6 +713,8 @@ var largestAltitude = function(gain) {
 
 // Problem 20 - Maximum Subarray
 
+// Sol 1 - If arr contains both +ve and -ve numbers
+
 const maximumSubarray = (nums) => {
   let maxSum = 0;
   let currentSum = 0;
@@ -729,4 +731,20 @@ const maximumSubarray = (nums) => {
   return maxSum;
 };
 
+// Sol2 - For all cases ( Optimal Solution )
+
+const maxSubArray = (nums) => {
+  let maxGlobal = nums[0];
+  let maxCurrent = nums[0];
+  for (let i = 1; i < nums.length; i++) {
+    maxCurrent + nums[i] > nums[i]
+      ? (maxCurrent = maxCurrent + nums[i])
+      : (maxCurrent = nums[i]);
+
+    if (maxCurrent > maxGlobal) {
+      maxGlobal = maxCurrent;
+    }
+  }
+  return maxGlobal;
+};
 
