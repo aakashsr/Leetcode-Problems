@@ -55,6 +55,19 @@ let twoSum3 = (arr, target) => {
   return false;
 };
 
+// Sol 4 with Map Object and best approach with least code
+
+const twoSum4 = (nums, target) => {
+  const map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    if (map.get(nums[i]) !== undefined) {
+      return [map.get(nums[i]), i];
+    } else {
+      map.set(target - nums[i], i);
+    }
+  }
+};
+
 // Problem 2  -  Reverse Integer
 
 // Solution 1 with BigO(n)
