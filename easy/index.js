@@ -779,3 +779,18 @@ const moveZeroes3 = (nums) => {
   }
   return newArr;
 };
+
+
+// Problem 22 - Contains Duplicates
+
+const containDuplicates = (nums) => {
+  const map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    if (map.get(nums[i]) !== undefined) {
+      return true;
+    } else {
+      map.set(nums[i], i);
+    }
+  }
+  return false;
+};
