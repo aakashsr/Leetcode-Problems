@@ -699,7 +699,7 @@ var arrayStringsAreEqual = function (word1, word2) {
 
 // Problem 19 - Find the Highest Altitude
 
-var largestAltitude = function(gain) {
+var largestAltitude = function (gain) {
   let maxAltitude = 0;
   let newHeight = 0;
   for (let i = 0; i < gain.length; i++) {
@@ -748,3 +748,34 @@ const maxSubArray = (nums) => {
   return maxGlobal;
 };
 
+// Problem 21 - Move Zeroes
+
+// Sol 1 In place algo - Space - O(1) and Time - O(n)
+
+const moveZeroes2 = (nums) => {
+  for (let i = 0, j = 0; j < nums.length; j++) {
+    if (nums[j] !== 0) {
+      [nums[i], nums[j]] = [nums[j], nums[i]];
+      i++;
+    }
+  }
+  return nums;
+};
+
+// sol 2 - Space - O(n) and Time - O(n)
+
+const moveZeroes3 = (nums) => {
+  let newArr = [];
+  let counter = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      newArr.push(nums[i]);
+      counter++;
+    }
+  }
+
+  for (let i = counter; i < nums.length; i++) {
+    newArr.push(0);
+  }
+  return newArr;
+};
