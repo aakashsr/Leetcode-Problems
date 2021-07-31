@@ -794,3 +794,22 @@ const containDuplicates = (nums) => {
   }
   return false;
 };
+
+// Problem 23 - Majority Element
+const majorityElement = (nums) => {
+  let index = 0;
+  let count = 1;
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[index] === nums[i]) {
+      count++;
+    } else {
+      count--;
+    }
+
+    if (count == 0) {
+      index = i;
+      count = 1;
+    }
+  }
+  return nums[index];
+};
