@@ -780,7 +780,6 @@ const moveZeroes3 = (nums) => {
   return newArr;
 };
 
-
 // Problem 22 - Contains Duplicates
 
 const containDuplicates = (nums) => {
@@ -812,4 +811,35 @@ const majorityElement = (nums) => {
     }
   }
   return nums[index];
+};
+
+// Problem 24 - Intersection of two arrays
+
+// Sol 1 - Using Set()
+const intersection = (nums1, nums2) => {
+  const num1Set = new Set(nums1);
+  const num2Set = new Set(nums2);
+
+  const result = [];
+
+  for (var value of num1Set) {
+    if (num2Set.has(value)) {
+      result.push(value);
+    }
+  }
+
+  return result;
+};
+
+// Sol 2 - Using Array "includes()" method
+const intersection = (nums1, nums2) => {
+  const intersectionArr = [];
+  for (let i = 0; i < nums1.length; i++) {
+    if (nums2.includes(nums1[i])) {
+      if (!intersectionArr.includes(nums1[i])) {
+        intersectionArr.push(nums1[i]);
+      }
+    }
+  }
+  return intersectionArr;
 };
