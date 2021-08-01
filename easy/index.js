@@ -843,3 +843,17 @@ const intersection = (nums1, nums2) => {
   }
   return intersectionArr;
 };
+
+// Problem 25 - Intersection of two arrays II
+
+var intersect = function(nums1, nums2) {
+  const intersectionArr = [];
+   for (let i = 0; i < nums1.length; i++) {
+     if (nums2.includes(nums1[i])) {
+       intersectionArr.push(nums1[i]);
+       const index = nums2.indexOf(nums1[i]);
+       nums2.splice(index, 1);
+     }
+   }
+   return intersectionArr;
+ };
