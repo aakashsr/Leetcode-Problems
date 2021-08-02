@@ -857,3 +857,17 @@ var intersect = function(nums1, nums2) {
    }
    return intersectionArr;
  };
+
+ 
+// Problem 26 - Find all numbers disappeared in an array
+
+var findDisappearedNumbers = function(nums) {
+  let newSet = new Set(nums);
+  const resArr = [];
+  for (let i = 1; i <=  nums.length; i++) {
+    if (!newSet.has(i)) {
+      resArr.push(i);
+    }
+  }
+  return resArr;
+};
