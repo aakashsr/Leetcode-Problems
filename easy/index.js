@@ -846,28 +846,48 @@ const intersection = (nums1, nums2) => {
 
 // Problem 25 - Intersection of two arrays II
 
-var intersect = function(nums1, nums2) {
+var intersect = function (nums1, nums2) {
   const intersectionArr = [];
-   for (let i = 0; i < nums1.length; i++) {
-     if (nums2.includes(nums1[i])) {
-       intersectionArr.push(nums1[i]);
-       const index = nums2.indexOf(nums1[i]);
-       nums2.splice(index, 1);
-     }
-   }
-   return intersectionArr;
- };
+  for (let i = 0; i < nums1.length; i++) {
+    if (nums2.includes(nums1[i])) {
+      intersectionArr.push(nums1[i]);
+      const index = nums2.indexOf(nums1[i]);
+      nums2.splice(index, 1);
+    }
+  }
+  return intersectionArr;
+};
 
- 
 // Problem 26 - Find all numbers disappeared in an array
 
-var findDisappearedNumbers = function(nums) {
+var findDisappearedNumbers = function (nums) {
   let newSet = new Set(nums);
   const resArr = [];
-  for (let i = 1; i <=  nums.length; i++) {
+  for (let i = 1; i <= nums.length; i++) {
     if (!newSet.has(i)) {
       resArr.push(i);
     }
   }
   return resArr;
+};
+
+// Problem 27 - Happy Number
+
+var isHappy = function (n) {
+  let set = new Set();
+  while (!set.has(n)) {
+    set.add(n);
+    let sqSum = 0;
+    while (n > 0) {
+      sqSum += (n % 10) ** 2;
+      n = parseInt(n / 10);
+    }
+
+    if (sqSum === 1) {
+      return true;
+    } else {
+      n = sqSum;
+    }
+  }
+  return false;
 };
