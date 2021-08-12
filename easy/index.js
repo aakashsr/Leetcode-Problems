@@ -160,7 +160,7 @@ let palindrome4 = (num) => {
 // Problem 4 - Roman to Integer
 
 // Sol 1 - Using Switch statement
-function roman_to_Int(str1) {
+function roman_to_Int1(str1) {
   if (str1 == null) return -1;
   var num = char_to_int(str1.charAt(0));
   // num = X
@@ -200,16 +200,15 @@ function char_to_int(c) {
 }
 
 // Solution 2 - Using Object
-let romanToInteger = (roman) => {
-  let num = char_to_integer(roman.charAt(0)); // 1
+let roman_to_Int2 = (roman) => {
+  let num = char_to_integer(roman.charAt(0)); 
   for (let i = 1; i < roman.length; i++) {
-    // i = 1
-    let pre = char_to_integer(roman[i - 1]); // 1
-    let curr = char_to_integer(roman[i]); // 10
+    let pre = char_to_integer(roman[i - 1]); 
+    let curr = char_to_integer(roman[i]); 
     if (pre >= curr) {
       num += curr;
     } else {
-      num = num - pre * 2 + curr; // 1 - 1 * 2 + 10
+      num = num - pre * 2 + curr; 
     }
   }
   return num;
@@ -230,30 +229,8 @@ char_to_integer = (char) => {
 
 // Solution 3 - Using for loop from index 0
 
-let romanToNumber = (roman) => {
-  romanArr = roman.split("");
-  let sum = 0;
-  let cur = romanArr[0];
-  let curNum = findPair(cur);
-  for (let i = 0; i < romanArr.length; i++) {
-    if (i === 0) {
-      sum += curNum;
-    } else {
-      let prevNum = curNum;
-      cur = romanArr[i];
-      curNum = findPair(cur);
-      if (prevNum >= curNum) {
-        sum += curNum;
-      } else {
-        sum += curNum - 2 * prevNum;
-      }
-    }
-  }
-  return sum;
-};
-
-let findPair = (alphabet) => {
-  const romanNumberPairObj = {
+let roman_to_Int3 = (roman) => {
+  var charToInt = {
     I: 1,
     V: 5,
     X: 10,
@@ -262,8 +239,106 @@ let findPair = (alphabet) => {
     D: 500,
     M: 1000,
   };
+  let sum = 0;
 
-  return romanNumberPairObj[alphabet];
+  for (let i = 0; i < roman.length; i++) {
+    let cur = charToInt[roman[i]];
+    let next = charToInt[roman[i + 1]];
+
+    if (next) {
+      // this above condition i,e if(next)  is there only to cover the last index where cur will contain value at last index but "next" will becomes "undefined" . So , this make sure if "next" next becomes "undefined" , just add "cur" to sum.
+      if (cur < next) {
+        sum = sum + cur - 2 * cur;
+      } else {
+        sum += cur;
+      }
+    } else {
+      sum += cur;
+    }
+  }
+  return sum;
+};
+
+// Sol : 4 - By using less number of iterations 
+
+/* Logic 
+if ( cur < next ) => then add (next - cur) to sum and increment i by 2
+else add only "cur" to sum
+
+Ex - MCMXCIV 
+i = 0 
+cur = M => 1000 & next = C => 100 
+cur > next => sum += cur;
+sum = 1000
+
+i = 1; 
+cur = C => 100 & next = M => 1000
+cur < next => sum = sum + (next - cur) 
+i+= 2
+sum = 1900 
+
+Note : We are incrementing i by 2 , because we are taking both cur and next into consideration when "cur < next"
+*/
+
+const roman_to_Int4 = (roman) => {
+  var charToInt = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+  let sum = 0;
+
+  for (let i = 0; i < roman.length; i++) {
+    let cur = charToInt[roman[i]];
+    let next = charToInt[roman[i + 1]];
+
+    if (next) {
+      if (cur < next) {
+        sum = sum + (next - cur);
+        i++;
+      } else {
+        sum += cur;
+      }
+    } else {
+      sum += cur;
+    }
+  }
+
+  return sum;
+};
+
+// Sol 4 - V2 - Using while loop 
+
+const romanIntoInteger6 = (roman) => {
+  var charToInt = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+  let sum = 0;
+  let i = 0;
+
+  while (roman[i] !== undefined) {
+    let cur = charToInt[roman[i]];
+    let next = charToInt[roman[i + 1]];
+
+    if (cur < next) {
+      sum = sum + (next - cur);
+      i += 2;
+    } else {
+      sum += cur;
+      i += 1;
+    }
+  }
+  return sum;
 };
 
 // Problem 5 - Longest Common Prefixes
