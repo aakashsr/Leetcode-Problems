@@ -33,3 +33,29 @@ const rotate2 = (nums, k) => {
     nums[i] = newArr[i];
   }
 };
+
+// Problem 2: Longest Consecetive Sequence
+
+const logestConsecutiveSequence = (nums) => {
+  if (nums.length === 0) {
+    return 0;
+  }
+  const sortedNums = nums.sort((a, b) => a - b);
+  let curMax = 0;
+  let globalMax = 0;
+  for (let i = 0; i < sortedNums.length; i++) {
+    if (sortedNums[i + 1] !== undefined) {
+      if (sortedNums[i + 1] - sortedNums[i] === 1) {
+        curMax++;
+        if (curMax > globalMax) {
+          globalMax = curMax;
+        }
+      } else if (sortedNums[i + 1] - sortedNums[i] === 0) {
+        curMax = curMax;
+      } else {
+        curMax = 0;
+      }
+    }
+  }
+  return globalMax + 1;
+};
