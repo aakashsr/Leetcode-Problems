@@ -55,7 +55,7 @@ let twoSum3 = (arr, target) => {
   return false;
 };
 
-// Sol 4 with Map Object and best approach with least code
+// Sol 4 with Map Object and best approach with least code ( vv imp)
 
 const twoSum4 = (nums, target) => {
   const map = new Map();
@@ -67,6 +67,26 @@ const twoSum4 = (nums, target) => {
     }
   }
 };
+
+// Problem 1.2 - Find the number of all pairs that result to given sum ( imp )
+
+// Sol 
+const pairsWithSum = (nums, target) => {
+  let count = 0;
+  let map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    if (map.get(target - nums[i]) !== undefined) {
+      count += map.get(target - nums[i]);
+    }
+    if (map.get(nums[i]) === undefined) {
+      map.set(nums[i], 0);
+    }
+    map.set(nums[i], map.get(nums[i]) + 1);
+  }
+  return count;
+};
+
+
 
 // Problem 2  -  Reverse Integer
 
@@ -163,7 +183,6 @@ let palindrome4 = (num) => {
 function roman_to_Int1(str1) {
   if (str1 == null) return -1;
   var num = char_to_int(str1.charAt(0));
-  // num = X
   var pre, curr;
 
   for (var i = 1; i < str1.length; i++) {
@@ -248,12 +267,12 @@ let roman_to_Int3 = (roman) => {
     if (next) {
       // this above condition i,e if(next)  is there only to cover the last index where cur will contain value at last index but "next" will becomes "undefined" . So , this make sure if "next" next becomes "undefined" , just add "cur" to sum.
       if (cur < next) {
-        sum = sum + cur - 2 * cur;
+        sum -= - cur;
       } else {
         sum += cur;
       }
     } else {
-      sum += cur;
+      sum += cur;  
     }
   }
   return sum;
@@ -966,3 +985,5 @@ var isHappy = function (n) {
   }
   return false;
 };
+
+
