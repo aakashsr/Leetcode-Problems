@@ -70,7 +70,7 @@ const twoSum4 = (nums, target) => {
 
 // Problem 1.2 - Find the number of all pairs that result to given sum ( imp )
 
-// Sol 
+// Sol
 const pairsWithSum = (nums, target) => {
   let count = 0;
   let map = new Map();
@@ -85,8 +85,6 @@ const pairsWithSum = (nums, target) => {
   }
   return count;
 };
-
-
 
 // Problem 2  -  Reverse Integer
 
@@ -220,14 +218,14 @@ function char_to_int(c) {
 
 // Solution 2 - Using Object
 let roman_to_Int2 = (roman) => {
-  let num = char_to_integer(roman.charAt(0)); 
+  let num = char_to_integer(roman.charAt(0));
   for (let i = 1; i < roman.length; i++) {
-    let pre = char_to_integer(roman[i - 1]); 
-    let curr = char_to_integer(roman[i]); 
+    let pre = char_to_integer(roman[i - 1]);
+    let curr = char_to_integer(roman[i]);
     if (pre >= curr) {
       num += curr;
     } else {
-      num = num - pre * 2 + curr; 
+      num = num - pre * 2 + curr;
     }
   }
   return num;
@@ -267,18 +265,18 @@ let roman_to_Int3 = (roman) => {
     if (next) {
       // this above condition i,e if(next)  is there only to cover the last index where cur will contain value at last index but "next" will becomes "undefined" . So , this make sure if "next" next becomes "undefined" , just add "cur" to sum.
       if (cur < next) {
-        sum -= - cur;
+        sum -= -cur;
       } else {
         sum += cur;
       }
     } else {
-      sum += cur;  
+      sum += cur;
     }
   }
   return sum;
 };
 
-// Sol : 4 - By using less number of iterations 
+// Sol : 4 - By using less number of iterations
 
 /* Logic 
 if ( cur < next ) => then add (next - cur) to sum and increment i by 2
@@ -330,7 +328,7 @@ const roman_to_Int4 = (roman) => {
   return sum;
 };
 
-// Sol 4 - V2 - Using while loop 
+// Sol 4 - V2 - Using while loop
 
 const romanIntoInteger6 = (roman) => {
   var charToInt = {
@@ -986,4 +984,18 @@ var isHappy = function (n) {
   return false;
 };
 
+// Problem 28 - Reverse Linked List
 
+const reverseLinkedList = (head) => {
+  let prev = null;
+  let cur = head;
+  let next = null;
+
+  while (cur !== null) {
+    next = cur.next;
+    cur.next = prev;
+    prev = cur;
+    cur = next;
+  }
+  return prev;                // prev will become the head at the end of loop.
+};
