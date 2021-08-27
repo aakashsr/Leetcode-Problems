@@ -984,7 +984,7 @@ var isHappy = function (n) {
   return false;
 };
 
-// Problem 28 - Reverse Linked List
+// Problem 28 (i) - Reverse Linked List
 
 const reverseLinkedList = (head) => {
   let prev = null;
@@ -997,5 +997,18 @@ const reverseLinkedList = (head) => {
     prev = cur;
     cur = next;
   }
-  return prev;                // prev will become the head at the end of loop.
+  return prev; // prev will become the head at the end of loop.
 };
+
+// Problem 28(ii) - Reverse Linked List ( recursively )
+
+function reverse(head) {
+  if (head === null || head.next === null) {
+    return head;
+  }
+
+  let newHead = reverse(head.next);
+  head.next.next = head;
+  head.next = null;
+  return newHead;
+}
