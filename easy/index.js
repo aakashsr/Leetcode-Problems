@@ -938,7 +938,31 @@ const intersection = (nums1, nums2) => {
 
 // Problem 25 - Intersection of two arrays II
 
-var intersect = function (nums1, nums2) {
+// Sol 1 - Using Hashmaps 
+
+var intersect1 = function(nums1, nums2) {
+  let map = new Map();
+   for (let n of nums1) {
+     if (map.has(n)) {
+       map.set(n, map.get(n) + 1);
+     } else {
+       map.set(n, 1);
+     }
+   }
+ 
+   let finalArr = [];
+   for (let n of nums2) {
+     if (map.has(n) && map.get(n) > 0) {
+       finalArr.push(n);
+       map.set(n, map.get(n) - 1);
+     }
+   }
+   return finalArr;
+ };
+
+// Sol 2 - Using includes
+
+var intersect2 = function (nums1, nums2) {
   const intersectionArr = [];
   for (let i = 0; i < nums1.length; i++) {
     if (nums2.includes(nums1[i])) {
