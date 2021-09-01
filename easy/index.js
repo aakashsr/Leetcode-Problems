@@ -938,27 +938,27 @@ const intersection = (nums1, nums2) => {
 
 // Problem 25 - Intersection of two arrays II
 
-// Sol 1 - Using Hashmaps 
+// Sol 1 - Using Hashmaps
 
-var intersect1 = function(nums1, nums2) {
+var intersect1 = function (nums1, nums2) {
   let map = new Map();
-   for (let n of nums1) {
-     if (map.has(n)) {
-       map.set(n, map.get(n) + 1);
-     } else {
-       map.set(n, 1);
-     }
-   }
- 
-   let finalArr = [];
-   for (let n of nums2) {
-     if (map.has(n) && map.get(n) > 0) {
-       finalArr.push(n);
-       map.set(n, map.get(n) - 1);
-     }
-   }
-   return finalArr;
- };
+  for (let n of nums1) {
+    if (map.has(n)) {
+      map.set(n, map.get(n) + 1);
+    } else {
+      map.set(n, 1);
+    }
+  }
+
+  let finalArr = [];
+  for (let n of nums2) {
+    if (map.has(n) && map.get(n) > 0) {
+      finalArr.push(n);
+      map.set(n, map.get(n) - 1);
+    }
+  }
+  return finalArr;
+};
 
 // Sol 2 - Using includes
 
@@ -1039,7 +1039,7 @@ function reverse(head) {
 
 // Problem 29 - Random Note
 
-// Sol 1 - Using object 
+// Sol 1 - Using object
 
 const ransomNoteOne = (ransomNote, magazine) => {
   let map = {};
@@ -1071,7 +1071,8 @@ const ransomNoteTwo = (ransomNote, magazine) => {
   }
 
   for (let char of ransomNote) {
-    if (!map.get(char)) {           // make sure to use "get()" to get the value associated with key not "has()"
+    if (!map.get(char)) {
+      // make sure to use "get()" to get the value associated with key not "has()"
       return false;
     }
     map.set(char, map.get(char) - 1);
@@ -1079,4 +1080,20 @@ const ransomNoteTwo = (ransomNote, magazine) => {
   return true;
 };
 
+// Problem 30 : First Unique char of string
 
+var firstUniqChar = function (s) {
+  let map = {};
+  for (let char of s) {
+    if (!map[char]) {
+      map[char] = 0;
+    }
+    map[char]++;
+  }
+  for (let char in map) {
+    if (map[char] === 1) {
+      return s.indexOf(char);
+    }
+  }
+  return -1;
+};
