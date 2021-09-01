@@ -1036,3 +1036,47 @@ function reverse(head) {
   head.next = null;
   return newHead;
 }
+
+// Problem 29 - Random Note
+
+// Sol 1 - Using object 
+
+const ransomNoteOne = (ransomNote, magazine) => {
+  let map = {};
+  for (let char of magazine) {
+    if (!map[char]) {
+      map[char] = 0;
+    }
+    map[char]++;
+  }
+
+  for (let char of ransomNote) {
+    if (!map[char]) {
+      return false;
+    }
+    map[char]--;
+  }
+  return true;
+};
+
+// Sol 2 - Using Map Object
+
+const ransomNoteTwo = (ransomNote, magazine) => {
+  let map = new Map();
+  for (let char of magazine) {
+    if (!map.has(char)) {
+      map.set(char, 0);
+    }
+    map.set(char, map.get(char) + 1);
+  }
+
+  for (let char of ransomNote) {
+    if (!map.get(char)) {           // make sure to use "get()" to get the value associated with key not "has()"
+      return false;
+    }
+    map.set(char, map.get(char) - 1);
+  }
+  return true;
+};
+
+
